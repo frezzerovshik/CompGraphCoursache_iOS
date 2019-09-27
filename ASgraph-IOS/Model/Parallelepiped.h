@@ -30,4 +30,5 @@
 -(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
 -(MyPoint)middleCalculate;
 -(NSMutableArray*)convertTo2d;
+
 @end
