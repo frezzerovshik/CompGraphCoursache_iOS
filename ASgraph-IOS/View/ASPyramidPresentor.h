@@ -11,7 +11,7 @@
 @interface ASPyramidPresentor : UIView
 @property (strong , nonatomic) UIView *scene;//По идее, во втором презенторе ссылка должна быть weak
 @property (strong , nonatomic) ASPyramid *figure;
-
+@property (strong , nonatomic) UIBezierPath* path;
 //Конструктор из мяса и костей
 -(instancetype)initWithExample: (ASPyramid*) example andView:(UIView*)myView;
 #pragma mark - building methods

@@ -6,4 +6,26 @@
 //  Copyright © 2019 Артем Шарапов. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ASPyramidPresentor.h"
+
+@implementation ASPyramidPresentor
+-(instancetype)initWithExample:(ASPyramid *)example andView:(UIView *)myView{
+    
+    return self;
+}
+-(void)buildPyramidOnView{
+    
+}
+-(void)deletePyramid{
+    
+}
+-(void)deleteInvizibleLines{
+    
+}
+-(void)fillingFigure{
+    
+}
+-(void)buildShadow{
+    
+}
+@end
