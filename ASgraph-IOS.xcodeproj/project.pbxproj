@@ -89,9 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				3234A8DD233E48F300341027 /* Pyramid.h */,
+				3234A8DE233E48FC00341027 /* Pyramid.m */,
 				3234A8DA233E48DE00341027 /* Parallelepiped.h */,
 				3234A8DB233E48E900341027 /* Parallelepiped.m */,
-				3234A8DE233E48FC00341027 /* Pyramid.m */,
 				3234A8E0233E490600341027 /* Point.h */,
 			);
 			path = Model;

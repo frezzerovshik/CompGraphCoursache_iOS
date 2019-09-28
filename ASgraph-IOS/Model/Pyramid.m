@@ -153,29 +153,29 @@ const CGFloat angle = 0.02;
     }
     [self goToZero:false orBack:true];
 }
--(NSMutableArray*)convertTo2d{
-    NSMutableArray *twoDcoords = [[NSMutableArray alloc]init];
+-(ASPyramid*)convertTo2d{
+    ASPyramid* myPyramidIn2D;
     MyPoint tmp;
     tmp.twoD.x = _aPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.twoD.y = _aPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.z = _aPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    myPyramidIn2D->_aPoint = tmp;
     tmp.twoD.x = _bPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.twoD.y = _bPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.z = _bPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    myPyramidIn2D->_bPoint = tmp;
     tmp.twoD.x = _cPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.twoD.y = _cPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.z = _cPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    myPyramidIn2D->_cPoint = tmp;
     tmp.twoD.x = _dPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.twoD.y = _dPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.z = _dPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
-    return twoDcoords;
+    myPyramidIn2D->_dPoint = tmp;
+    return myPyramidIn2D;
 }
 @end

@@ -23,5 +23,5 @@
 //@"x",@"Left"
 -(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
 -(MyPoint)middleCalculate;
--(NSMutableArray*)convertTo2d;
+-(ASPyramid* )convertTo2d;
 @end
