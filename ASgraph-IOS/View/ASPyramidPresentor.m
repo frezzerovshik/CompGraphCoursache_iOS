@@ -35,11 +35,25 @@
     [_path moveToPoint:tmp.aPoint.twoD];
     [_path addLineToPoint:tmp.cPoint.twoD];
     [_path addLineToPoint:tmp.dPoint.twoD];
+    [_path stroke];//ДИБИЛ!!!
 }
 -(void)deletePyramid{
-    
+    //Еще не придумал как сделать
 }
 -(void)deleteInvizibleLines{
+    /*
+     Алгоритм Z-буфера
+     
+     Первоначальная задача - задать двумерный массив, на котором будет реализован Z-буфер
+     Т.к. на разных устройствах фактический размер View будет разный, нужно задавать его динамически
+     Для этого снимаю размеры view и создаю "массив массивов", высота view - количество элементов во внешнем массиве, ширина view - длина массива-элемента
+     */
+    NSMutableArray* z_bufer = [[NSMutableArray alloc] init];
+    CGRect tmp = [_scene frame];
+    for (CGFloat i = 0;i<tmp.size.height;++i){
+        NSMutableArray* tmp_string = [[NSMutableArray alloc] initWithCapacity:(NSUInteger)tmp.size.width];
+        [z_bufer addObject:tmp_string];
+    }
     
 }
 -(void)fillingFigure{
