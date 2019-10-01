@@ -9,7 +9,13 @@
 #import "ASPyramidPresentor.h"
 #import "Pyramid.h"
 @interface ASPyramidPresentor()
-@property (strong , nonatomic) UIBezierPath* path;
+//Ребра пирамиды
+@property (strong , nonatomic) UIBezierPath* pathAB;
+@property (strong , nonatomic) UIBezierPath* pathAC;
+@property (strong , nonatomic) UIBezierPath* pathAD;
+@property (strong , nonatomic) UIBezierPath* pathCD;
+@property (strong , nonatomic) UIBezierPath* pathCB;
+@property (strong , nonatomic) UIBezierPath* pathBD;
 @end
 @implementation ASPyramidPresentor
 -(instancetype)initWithExample:(ASPyramid *)example andView:(UIView *)myView{
@@ -17,25 +23,45 @@
     if(self){
         _figure = example;
         _scene = myView;
-        _path = [[UIBezierPath alloc] init];
+        _pathAB = [[UIBezierPath alloc] init];
+        _pathAC = [[UIBezierPath alloc] init];
+        _pathAD = [[UIBezierPath alloc] init];
+        _pathCD = [[UIBezierPath alloc] init];
+        _pathCB = [[UIBezierPath alloc] init];
+        _pathBD = [[UIBezierPath alloc] init];
     }
     return self;
 }
 -(void)buildPyramidOnView{
     ASPyramid* tmp;
     tmp = [_figure convertTo2d];
-    [_path moveToPoint:tmp.aPoint.twoD];
-    [_path addLineToPoint:tmp.bPoint.twoD];
-    [_path moveToPoint:tmp.bPoint.twoD];
-    [_path addLineToPoint:tmp.cPoint.twoD];
-    [_path moveToPoint:tmp.cPoint.twoD];
-    [_path addLineToPoint:tmp.dPoint.twoD];
-    [_path moveToPoint:tmp.dPoint.twoD];
-    [_path addLineToPoint:tmp.bPoint.twoD];
-    [_path moveToPoint:tmp.aPoint.twoD];
-    [_path addLineToPoint:tmp.cPoint.twoD];
-    [_path addLineToPoint:tmp.dPoint.twoD];
-    [_path stroke];//ДИБИЛ!!!
+    [_pathAB moveToPoint:tmp.aPoint.twoD];
+    [_pathAB addLineToPoint:tmp.bPoint.twoD];
+    [_pathAB closePath];
+    
+    [_pathAC moveToPoint:tmp.aPoint.twoD];
+    [_pathAC addLineToPoint:tmp.cPoint.twoD];
+    [_pathAC closePath];
+    
+    [_pathAD moveToPoint:tmp.aPoint.twoD];
+    [_pathAD addLineToPoint:tmp.dPoint.twoD];
+    [_pathAD closePath];
+    
+    [_pathCD moveToPoint:tmp.cPoint.twoD];
+    [_pathCD addLineToPoint:tmp.dPoint.twoD];
+    [_pathCD closePath];
+    
+    [_pathCB moveToPoint:tmp.cPoint.twoD];
+    [_pathCB addLineToPoint:tmp.bPoint.twoD];
+    [_pathCB closePath];
+    
+    [_pathBD moveToPoint:tmp.bPoint.twoD];
+    [_pathBD addLineToPoint:tmp.dPoint.twoD];
+    [_pathBD closePath];
+    //Хм...Для начала пропишем все ребра, чтобы в дальнейшем проверять, принадлежит ли точка ребру и заносить или не заносить ее в Z-буффер.
+    //В итоге при каждом изменении будут вызываться методы удаления текущей пирамиды и отрисовки только черных пикселей, чтобы не потерять вторую фигуру, далее будет осуществляться заливка и построение тени
+    //Вот так вот
+    //Не забудь все это, ведь ты ляжешь спать после ночной смены и опять нихера не вспомнишь как и что ты придумал
 }
 -(void)deletePyramid{
     //Еще не придумал как сделать
@@ -45,15 +71,9 @@
      Алгоритм Z-буфера
      
      Первоначальная задача - задать двумерный массив, на котором будет реализован Z-буфер
-     Т.к. на разных устройствах фактический размер View будет разный, нужно задавать его динамически
-     Для этого снимаю размеры view и создаю "массив массивов", высота view - количество элементов во внешнем массиве, ширина view - длина массива-элемента
+     
      */
-    NSMutableArray* z_bufer = [[NSMutableArray alloc] init];
-    CGRect tmp = [_scene frame];
-    for (CGFloat i = 0;i<tmp.size.height;++i){
-        NSMutableArray* tmp_string = [[NSMutableArray alloc] initWithCapacity:(NSUInteger)tmp.size.width];
-        [z_bufer addObject:tmp_string];
-    }
+
     
 }
 -(void)fillingFigure{
