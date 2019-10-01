@@ -8,6 +8,7 @@
 
 #import "ASPyramidPresentor.h"
 #import "Pyramid.h"
+#import "zBuff.h"
 @interface ASPyramidPresentor()
 //Ребра пирамиды
 @property (strong , nonatomic) UIBezierPath* pathAB;
@@ -16,6 +17,7 @@
 @property (strong , nonatomic) UIBezierPath* pathCD;
 @property (strong , nonatomic) UIBezierPath* pathCB;
 @property (strong , nonatomic) UIBezierPath* pathBD;
+@property (strong , nonatomic) NSMutableArray* z_bufer;
 @end
 @implementation ASPyramidPresentor
 -(instancetype)initWithExample:(ASPyramid *)example andView:(UIView *)myView{
@@ -29,6 +31,7 @@
         _pathCD = [[UIBezierPath alloc] init];
         _pathCB = [[UIBezierPath alloc] init];
         _pathBD = [[UIBezierPath alloc] init];
+        _z_bufer = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -73,8 +76,107 @@
      Первоначальная задача - задать двумерный массив, на котором будет реализован Z-буфер
      
      */
-
-    
+    //1 - Создаю двумерный массив
+    CGRect tmp = [_scene frame];
+    for (CGFloat i = 0;i<tmp.size.height;++i){
+        NSMutableArray* tmp_string = [[NSMutableArray alloc] initWithCapacity:(NSUInteger)tmp.size.width];
+        [_z_bufer addObject:tmp_string];
+    }
+    /*
+     В следующем куске кода я делаю следующее
+     - прохожусь по всем элементам массива и инициализирую их как белые точки на обычном удалении (абстрактной плоскости XY, для которой точки могут нахожиться ближе и дальше нее)
+     */
+    for(NSUInteger i = 0;i<_z_bufer.count;++i){
+        NSMutableArray* tmp = [_z_bufer objectAtIndex:i];
+        for(NSUInteger j = 0;j<tmp.count;++j){
+            zBuff temp;
+            temp.isBlack = NO;
+            temp.coords.z = DEFAULT_DEPTH;
+            temp.coords.twoD.x = j;
+            temp.coords.twoD.y = i;
+            [tmp addObject:[NSValue valueWithBytes:&temp objCType:@encode(zBuff)]];
+        }
+    }
+    /*Далее необходимо взять каждый путь и поочередно занести его точки в z-буффер
+     Если точка видима - ее значению isBlack = YES, иначе - пропуск итерации
+     
+     В ДАННОЙ ВЕРСИИ Я ЗАТРУДНЯЮСЬ ПРАВИЛЬНО ПРОАНАЛИЗИРОВАТЬ ИЗМЕНЕНИЕ КООРДИНАТЫ Z , ПОЭТОМУ ЕСЛИ БУДУТ БАГИ С УДАЛЕНИЕМ ЛИНИЙ - ОНИ ТУТ!!!!
+     */
+    for (NSUInteger i = 0; i<_z_bufer.count; ++i) {
+        NSMutableArray* tmp = [_z_bufer objectAtIndex:i];
+        for (NSUInteger j = 0; j < tmp.count ; ++j) {
+            zBuff temp;
+            [[tmp objectAtIndex:j]getValue:&temp];
+            if([_pathAB containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.aPoint.z>_figure.bPoint.z ? comparedZ = _figure.aPoint.z : _figure.bPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                     temp.isBlack = NO;
+                }
+            }
+            if([_pathAC containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.aPoint.z>_figure.cPoint.z ? comparedZ = _figure.aPoint.z : _figure.cPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                    temp.isBlack = NO;
+                }
+            }
+            if([_pathAD containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.aPoint.z>_figure.dPoint.z ? comparedZ = _figure.aPoint.z : _figure.dPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                    temp.isBlack = NO;
+                }
+            }
+            if([_pathCD containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.cPoint.z>_figure.dPoint.z ? comparedZ = _figure.cPoint.z : _figure.dPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                    temp.isBlack = NO;
+                }
+            }
+            if([_pathCB containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.cPoint.z>_figure.bPoint.z ? comparedZ = _figure.cPoint.z : _figure.bPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                    temp.isBlack = NO;
+                }
+            }
+            if([_pathBD containsPoint:temp.coords.twoD]){
+                CGFloat comparedZ = 0;
+                _figure.bPoint.z>_figure.dPoint.z ? comparedZ = _figure.bPoint.z : _figure.dPoint.z;
+                if(temp.coords.z>comparedZ){
+                    temp.isBlack = YES;
+                    temp.coords.z = comparedZ;
+                }
+                else{
+                    temp.isBlack = NO;
+                }
+            }
+            
+        }
+    }
+    /*НУ ВОТ ПО ИДЕЕ И ВСЕ, АЛГОРИТМ Z БУФЕРА РЕАЛИЗОВАН, ПЕРЕСМОТРИ НА СВЕЖУЮ ГОЛОВУ*/
 }
 -(void)fillingFigure{
     

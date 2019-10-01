@@ -39,6 +39,7 @@
 		3234A8E4233E49F800341027 /* ASPyramidPresentor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPyramidPresentor.h; sourceTree = "<group>"; };
 		3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASParallelepipedPresentor.m; sourceTree = "<group>"; };
 		3234A8E7233E4A7500341027 /* ASParallelepipedPresentor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASParallelepipedPresentor.h; sourceTree = "<group>"; };
+		32CDE08E2342E9B700FC4C6A /* zBuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zBuff.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 				3234A8E4233E49F800341027 /* ASPyramidPresentor.h */,
 				3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */,
 				3234A8E7233E4A7500341027 /* ASParallelepipedPresentor.h */,
+				32CDE08E2342E9B700FC4C6A /* zBuff.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
