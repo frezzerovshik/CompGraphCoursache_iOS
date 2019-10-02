@@ -20,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		322FAFAC2344AB0B002709CF /* Defines_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines_model.h; sourceTree = "<group>"; };
+		322FAFAE2344AC25002709CF /* Defines_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines_view.h; sourceTree = "<group>"; };
 		3234A8C0233E48A300341027 /* ASgraph-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASgraph-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3234A8C3233E48A300341027 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3234A8C4233E48A300341027 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,6 +55,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		322FAFAD2344ABA9002709CF /* Service files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Service files";
+			sourceTree = "<group>";
+		};
 		3234A8B7233E48A300341027 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +81,7 @@
 		3234A8C2233E48A300341027 /* ASgraph-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				322FAFAD2344ABA9002709CF /* Service files */,
 				3234A8E8233E4A8200341027 /* Controller */,
 				3234A8E1233E49C700341027 /* View */,
 				3234A8D9233E48AD00341027 /* Model */,
@@ -89,6 +99,7 @@
 		3234A8D9233E48AD00341027 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				322FAFAC2344AB0B002709CF /* Defines_model.h */,
 				3234A8DD233E48F300341027 /* Pyramid.h */,
 				3234A8DE233E48FC00341027 /* Pyramid.m */,
 				3234A8DA233E48DE00341027 /* Parallelepiped.h */,
@@ -106,6 +117,7 @@
 				3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */,
 				3234A8E7233E4A7500341027 /* ASParallelepipedPresentor.h */,
 				32CDE08E2342E9B700FC4C6A /* zBuff.h */,
+				322FAFAE2344AC25002709CF /* Defines_view.h */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Pyramid.h"
-#define Z_PL -50
-#define Z_C -500
+#import "Defines_model.h"
+
+
 @implementation ASPyramid
-NSInteger movement = 0;
+NSInteger movement = MOVEMENT;
 CGFloat scale = 0;
-const CGFloat angle = 0.02;
+const CGFloat angle = ANGLE;
 #pragma mark - Service methods
 -(instancetype) initWithPoints:(MyPoint)aInitValue:(MyPoint)bInitValue:(MyPoint)cInitValue:(MyPoint)dInitValue{
     self = [super init];
@@ -57,9 +58,9 @@ const CGFloat angle = 0.02;
 #pragma mark - Conversion methods
 -(void)movementWithVector:(NSString *)vector{
     if([vector compare:@"Up"]||[vector compare:@"Right"]||[vector compare:@"Nearer"])
-        movement = 5;
+        movement = MOVEMENT;
     else
-        movement = -5;
+        movement = -MOVEMENT;
     if([vector compare:@"Up"]||[vector compare:@"Down"]){
         _aPoint.twoD.y+=movement;
         _bPoint.twoD.y+=movement;
@@ -82,9 +83,9 @@ const CGFloat angle = 0.02;
 -(void)scaleWithCondition:(NSString*)typeOfScale{
     [self goToZero:true orBack:false];
     if([typeOfScale compare:@"Up"])
-        scale = 1.2;
+        scale = UPSCALE;
     else
-        scale = 0.7;
+        scale = DOWNSCALE;
     _aPoint.twoD.x*=scale;
     _aPoint.twoD.y*=scale;
     _aPoint.z*=scale;

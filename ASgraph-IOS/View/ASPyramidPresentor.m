@@ -9,6 +9,7 @@
 #import "ASPyramidPresentor.h"
 #import "Pyramid.h"
 #import "zBuff.h"
+#import "Defines_view.h"
 @interface ASPyramidPresentor()
 //Ребра пирамиды
 @property (strong , nonatomic) UIBezierPath* pathAB;
