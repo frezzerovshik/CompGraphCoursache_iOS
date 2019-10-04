@@ -12,6 +12,7 @@
 #import "Defines_view.h"
 @interface ASPyramidPresentor()
 //Ребра пирамиды
+
 @property (strong , nonatomic) UIBezierPath* pathAB;
 @property (strong , nonatomic) UIBezierPath* pathAC;
 @property (strong , nonatomic) UIBezierPath* pathAD;
@@ -19,6 +20,7 @@
 @property (strong , nonatomic) UIBezierPath* pathCB;
 @property (strong , nonatomic) UIBezierPath* pathBD;
 @property (strong , nonatomic) NSMutableArray* z_bufer;
+@property (nonatomic,assign) BOOL wasBuilded;
 @end
 @implementation ASPyramidPresentor
 -(instancetype)initWithExample:(ASPyramid *)example andView:(UIView *)myView{
@@ -33,12 +35,16 @@
         _pathCB = [[UIBezierPath alloc] init];
         _pathBD = [[UIBezierPath alloc] init];
         _z_bufer = [[NSMutableArray alloc] init];
+        _wasBuilded = NO;
     }
     return self;
 }
--(void)buildPyramidOnView{
+-(void)buildFrame{
     ASPyramid* tmp;
     tmp = [_figure convertTo2d];
+    
+    [[UIColor blackColor] setStroke]; //Вот тут я конкретно обосрался
+    
     [_pathAB moveToPoint:tmp.aPoint.twoD];
     [_pathAB addLineToPoint:tmp.bPoint.twoD];
     [_pathAB closePath];
@@ -62,21 +68,18 @@
     [_pathBD moveToPoint:tmp.bPoint.twoD];
     [_pathBD addLineToPoint:tmp.dPoint.twoD];
     [_pathBD closePath];
-    //Хм...Для начала пропишем все ребра, чтобы в дальнейшем проверять, принадлежит ли точка ребру и заносить или не заносить ее в Z-буффер.
-    //В итоге при каждом изменении будут вызываться методы удаления текущей пирамиды и отрисовки только черных пикселей, чтобы не потерять вторую фигуру, далее будет осуществляться заливка и построение тени
-    //Вот так вот
-    //Не забудь все это, ведь ты ляжешь спать после ночной смены и опять нихера не вспомнишь как и что ты придумал
 }
 -(void)deletePyramid{
-    //Еще не придумал как сделать
+    [[UIColor whiteColor] setStroke];
+    [_pathAD stroke];
+    [_pathAB stroke];
+    [_pathAC stroke];
+    [_pathCD stroke];
+    [_pathCB stroke];
+    [_pathBD stroke];
 }
 -(void)deleteInvizibleLines{
-    /*
-     Алгоритм Z-буфера
-     
-     Первоначальная задача - задать двумерный массив, на котором будет реализован Z-буфер
-     
-     */
+    //Алгоритм Z-буфера
     //1 - Создаю двумерный массив
     CGRect tmp = [_scene frame];
     for (CGFloat i = 0;i<tmp.size.height;++i){
@@ -116,7 +119,7 @@
                     temp.coords.z = comparedZ;
                 }
                 else{
-                     temp.isBlack = NO;
+                    temp.isBlack = NO;
                 }
             }
             if([_pathAC containsPoint:temp.coords.twoD]){
@@ -184,5 +187,16 @@
 }
 -(void)buildShadow{
     
+}
+-(void)buildPyramidOnView{
+    if(_wasBuilded == NO)
+        _wasBuilded = YES;
+    else
+        [self deletePyramid];
+    /*Building path*/
+    [self buildFrame];
+    [self deleteInvizibleLines];
+    [self fillingFigure];
+    [self buildShadow];
 }
 @end

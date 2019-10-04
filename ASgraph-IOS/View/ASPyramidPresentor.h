@@ -14,6 +14,7 @@
 //Конструктор из мяса и костей
 -(instancetype)initWithExample: (ASPyramid*) example andView:(UIView*)myView;
 #pragma mark - building methods
+-(void) buildFrame;
 -(void) buildPyramidOnView;
 -(void) deletePyramid;
 -(void) deleteInvizibleLines;
