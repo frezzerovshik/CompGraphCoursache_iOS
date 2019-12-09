@@ -21,6 +21,8 @@
 @property (strong , nonatomic) UIBezierPath* pathBD;
 @property (strong , nonatomic) NSMutableArray* z_bufer;
 @property (nonatomic,assign) BOOL wasBuilded;
+@property (strong , nonatomic) UIView *scene;//По идее, во втором презенторе ссылка должна быть weak
+@property (strong , nonatomic) ASPyramid *figure;
 @end
 @implementation ASPyramidPresentor
 -(instancetype)initWithExample:(ASPyramid *)example andView:(UIView *)myView{
@@ -77,6 +79,7 @@
     [_pathCD stroke];
     [_pathCB stroke];
     [_pathBD stroke];
+    [self fillingFigureWithColor:[UIColor whiteColor]];
 }
 -(void)deleteInvizibleLines{
     //Алгоритм Z-буфера
@@ -95,6 +98,7 @@
         for(NSUInteger j = 0;j<tmp.count;++j){
             zBuff temp;
             temp.isBlack = NO;
+            temp.color = [UIColor whiteColor];
             temp.coords.z = DEFAULT_DEPTH;
             temp.coords.twoD.x = j;
             temp.coords.twoD.y = i;
@@ -117,6 +121,7 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                    temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
@@ -128,6 +133,7 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                     temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
@@ -139,6 +145,7 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                     temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
@@ -150,6 +157,7 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                     temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
@@ -161,6 +169,7 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                     temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
@@ -172,18 +181,26 @@
                 if(temp.coords.z>comparedZ){
                     temp.isBlack = YES;
                     temp.coords.z = comparedZ;
+                     temp.color = [UIColor blackColor];
                 }
                 else{
                     temp.isBlack = NO;
                 }
+                [tmp insertObject:[NSValue valueWithBytes:&temp objCType:@encode(zBuff)] atIndex:j];
             }
-            
         }
     }
     /*НУ ВОТ ПО ИДЕЕ И ВСЕ, АЛГОРИТМ Z БУФЕРА РЕАЛИЗОВАН, ПЕРЕСМОТРИ НА СВЕЖУЮ ГОЛОВУ*/
 }
--(void)fillingFigure{
-    
+-(void)fillingFigureWithColor:(UIColor *)color{
+    zBuff tmp;
+    CGRect frame = [_scene frame];
+    for(NSUInteger i = 0;i<frame.size.height;++i){
+        NSMutableArray* temp = [_z_bufer objectAtIndex:i];
+        for (NSUInteger j = 0; j<frame.size.width; ++j) {
+           
+        }
+    }
 }
 -(void)buildShadow{
     
@@ -196,7 +213,7 @@
     /*Building path*/
     [self buildFrame];
     [self deleteInvizibleLines];
-    [self fillingFigure];
-    [self buildShadow];
+   // [self fillingFigureWithColor:[UIColor redColor]];
+    //[self buildShadow];
 }
 @end

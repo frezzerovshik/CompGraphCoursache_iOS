@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-
+#import "ASPyramidPresentor.h"
 @interface ViewController ()
-
+@property (strong,nonatomic) ASPyramidPresentor *workingSessionPyraminHandler;
 @end
 
 @implementation ViewController
@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _workingSessionPyraminHandler = [[ASPyramidPresentor alloc] init];
+    [_workingSessionPyraminHandler buildPyramidOnView];
 }
 
 

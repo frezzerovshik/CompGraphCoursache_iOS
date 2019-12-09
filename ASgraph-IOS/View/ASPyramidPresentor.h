@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 @class ASPyramid;
 @interface ASPyramidPresentor : UIView
-@property (strong , nonatomic) UIView *scene;//По идее, во втором презенторе ссылка должна быть weak
-@property (strong , nonatomic) ASPyramid *figure;
+
 //Конструктор из мяса и костей
 -(instancetype)initWithExample: (ASPyramid*) example andView:(UIView*)myView;
 #pragma mark - building methods
@@ -18,7 +17,8 @@
 -(void) buildPyramidOnView;
 -(void) deletePyramid;
 -(void) deleteInvizibleLines;
+-(void) drawZbuffer;
 #pragma mark - colorful methods
--(void) fillingFigure;
+-(void) fillingFigureWithColor: (UIColor*) color;
 -(void) buildShadow;
 @end
