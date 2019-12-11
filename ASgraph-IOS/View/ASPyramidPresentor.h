@@ -12,7 +12,7 @@
 @property (strong , nonatomic ) ASPyramid* pyramid;
 @property (nonatomic , assign) BOOL wasBuilt;
 
-/*-(void) deleteInvizibleLines;
--(void) buildShadow;
+-(void) deleteInvizibleLines;
+/*-(void) buildShadow;
 -(void) fillPyramid;*/
 @end

@@ -21,18 +21,21 @@
         MyPoint b;
         MyPoint c;
         MyPoint d;
-        a.twoD.x = 200;
-        a.twoD.y = 180;
-        a.z = 170;
-        b.twoD.x = 130;
-        b.twoD.y = 140;
-        b.z = 150;
-        c.twoD.x = 130;
-        c.twoD.y = 120;
-        c.z = 110;
-        d.twoD.x = 150;
-        d.twoD.y = 170;
-        d.z = 180;
+        a.twoD.x = 85.657157;
+        a.twoD.y = 124.356155;
+        a.z = 156.29555;
+        
+        b.twoD.x = 72.945044;
+        b.twoD.y = 73.082330;
+        b.z = 90.601417;
+        
+        c.twoD.x = 116.623375;
+        c.twoD.y = 51.445121;
+        c.z = 167.900502;
+        
+        d.twoD.x = 39.742789;
+        d.twoD.y = 59.880149;
+        d.z = 193.402528;
         _pyramid = [[ASPyramid alloc] initWithPoints:a and:b and:c and:d];
     }
     ASPyramid *tmp = [[ASPyramid alloc] initWithPoints:_pyramid.aPoint and:_pyramid.bPoint and:_pyramid.cPoint and:_pyramid.dPoint];
@@ -50,11 +53,13 @@
     CGContextAddLineToPoint(cont, tmp.cPoint.twoD.x, tmp.cPoint.twoD.y);
     CGContextMoveToPoint(cont, tmp.bPoint.twoD.x, tmp.bPoint.twoD.y);
     CGContextAddLineToPoint(cont, tmp.dPoint.twoD.x, tmp.dPoint.twoD.y);
-    CGContextSetStrokeColorWithColor(cont, [UIColor greenColor].CGColor);
+    CGContextSetStrokeColorWithColor(cont, [UIColor redColor].CGColor);
     CGContextStrokePath(cont);
     
 }
-
+-(void)deleteInvizibleLines{
+    /*Задача на ночь*/
+}
 
 
 @end

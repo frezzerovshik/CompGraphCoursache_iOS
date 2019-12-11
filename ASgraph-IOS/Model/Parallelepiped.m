@@ -67,9 +67,13 @@ static const CGFloat angle = 0.02;
     _hPoint.twoD.y+=tmp.twoD.y;
     _hPoint.z+=tmp.z;
 }
-/*-(MyPoint)middleCalculate{
-    //Code will be here soon...Navernoye...
-}*/
+-(MyPoint)middleCalculate{
+    MyPoint centerOfGravity;
+    centerOfGravity.twoD.x = (_aPoint.twoD.x+_bPoint.twoD.x+_cPoint.twoD.x+_dPoint.twoD.x+_ePoint.twoD.x+_fPoint.twoD.x+_gPoint.twoD.x)/NUM_OF_PARALLELEPIPED_TOPS;
+    centerOfGravity.twoD.y = (_aPoint.twoD.y+_bPoint.twoD.y+_cPoint.twoD.y+_dPoint.twoD.y+_ePoint.twoD.y+_fPoint.twoD.y+_gPoint.twoD.y)/NUM_OF_PARALLELEPIPED_TOPS;
+    centerOfGravity.z =(_aPoint.z+_bPoint.z+_cPoint.z+_dPoint.z+_ePoint.z+_fPoint.z+_gPoint.z)/NUM_OF_PARALLELEPIPED_TOPS;
+    return centerOfGravity;
+}
 #pragma mark - Conversion methods
 -(void)movementWithVector:(NSUInteger)vector{
     if(vector == UP || vector == RIGHT || vector == Z_PLUS)
@@ -231,49 +235,49 @@ static const CGFloat angle = 0.02;
     }
     [self goToZero:false orBack:true];
 }
--(NSMutableArray*)convertTo2d{
-    NSMutableArray *twoDcoords = [[NSMutableArray alloc]init];
+-(ASParallelepiped*)convertTo2d{
+    ASParallelepiped *twoDcoords = [[ASParallelepiped alloc]init];
     MyPoint tmp;
     tmp.twoD.x = _aPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.twoD.y = _aPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.z = _aPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.aPoint = tmp;
     tmp.twoD.x = _bPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.twoD.y = _bPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.z = _bPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.bPoint = tmp;
     tmp.twoD.x = _cPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.twoD.y = _cPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.z = _cPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.cPoint = tmp;
     tmp.twoD.x = _dPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.twoD.y = _dPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.z = _dPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.dPoint = tmp;
     tmp.twoD.x = _ePoint.twoD.x*(Z_C - Z_PL) / (Z_C - _ePoint.z);
     tmp.twoD.y = _ePoint.twoD.y*(Z_C - Z_PL) / (Z_C - _ePoint.z);
     tmp.z = _ePoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.ePoint = tmp;
     tmp.twoD.x = _fPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _fPoint.z);
     tmp.twoD.y = _fPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _fPoint.z);
     tmp.z = _fPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.fPoint = tmp;
     tmp.twoD.x = _gPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _gPoint.z);
     tmp.twoD.y = _gPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _gPoint.z);
     tmp.z = _gPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.gPoint = tmp;
     tmp.twoD.x = _hPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _hPoint.z);
     tmp.twoD.y = _hPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _hPoint.z);
     tmp.z = _hPoint.z;
     tmp.z -= Z_PL;
-    [twoDcoords addObject:[NSValue valueWithBytes:&tmp objCType:@encode(MyPoint)]];
+    twoDcoords.hPoint = tmp;
     return twoDcoords;
 }
 @end

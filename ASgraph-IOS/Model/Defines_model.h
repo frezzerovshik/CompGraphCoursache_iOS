@@ -12,6 +12,7 @@
 #define DOWNSCALE  0.7
 #define ANGLE 0.02
 #define NUM_OF_PYRAMID_TOPS 4
+#define NUM_OF_PARALLELEPIPED_TOPS 8
 #define LEFT 1
 #define RIGHT 2
 #define UP 3

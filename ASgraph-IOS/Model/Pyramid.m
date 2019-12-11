@@ -17,15 +17,14 @@ CGFloat scale ;
 }
 static const CGFloat angle = ANGLE;
 #pragma mark - Service methods
--(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue{
+-(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue {
     self = [super init];
     if(self){
-        movement = MOVEMENT;
-        scale = 0;
         _aPoint = aInitValue;
         _bPoint = bInitValue;
         _cPoint = cInitValue;
         _dPoint = dInitValue;
+        
         _middle = [self middleCalculate];
     }
     return self;
@@ -53,47 +52,50 @@ static const CGFloat angle = ANGLE;
     _dPoint.twoD.x+=tmp.twoD.x;
     _dPoint.twoD.y+=tmp.twoD.y;
     _dPoint.z+=tmp.z;
+    
 }
 -(MyPoint)middleCalculate{
- //Code will be here soon...Navernoye...
     MyPoint centerOfGravity;
     centerOfGravity.twoD.x = (_aPoint.twoD.x+_bPoint.twoD.x+_cPoint.twoD.x+_dPoint.twoD.x)/NUM_OF_PYRAMID_TOPS;
     centerOfGravity.twoD.y = (_aPoint.twoD.y+_bPoint.twoD.y+_cPoint.twoD.y+_dPoint.twoD.y)/NUM_OF_PYRAMID_TOPS;
+    centerOfGravity.z =(_aPoint.z+_bPoint.z+_cPoint.z+_dPoint.z)/NUM_OF_PYRAMID_TOPS;
     return centerOfGravity;
- }
+}
 #pragma mark - Conversion methods
 -(void)movementWithVector:(NSUInteger)vector{
-    if(vector == UP||vector == RIGHT||vector == Z_PLUS)
-        movement = MOVEMENT;
+    if(vector == UP || vector == RIGHT || vector == Z_PLUS)
+        movement = 5;
     else
-        movement = -MOVEMENT;
-    if(vector == UP || vector == DOWN){
+        movement = -5;
+    if(vector == UP||vector == DOWN){
         _aPoint.twoD.y+=movement;
         _bPoint.twoD.y+=movement;
         _cPoint.twoD.y+=movement;
         _dPoint.twoD.y+=movement;
+        
     }
-    if(vector == LEFT || vector == RIGHT){
+    if(vector == LEFT||vector == RIGHT){
         _aPoint.twoD.x+=movement;
         _bPoint.twoD.x+=movement;
         _cPoint.twoD.x+=movement;
         _dPoint.twoD.x+=movement;
+       
     }
-    if(vector == Z_PLUS || vector == Z_MINUS){
+    if(vector == Z_PLUS||vector == Z_MINUS){
         _aPoint.z+=movement;
         _bPoint.z+=movement;
         _cPoint.z+=movement;
         _dPoint.z+=movement;
+       
     }
 }
--(void)scaleWithCondition:(NSUInteger)condition{
-    [self middleCalculate];
+-(void)scaleWithCondition:(NSUInteger)typeOfScale{
+   _middle =  [self middleCalculate];
     [self goToZero:true orBack:false];
-    if(condition == PLUS_SIZE)
-        scale = UPSCALE;
+    if(typeOfScale == PLUS_SIZE)
+        scale = 1.2;
     else
-        scale = DOWNSCALE;
-    
+        scale = 0.7;
     _aPoint.twoD.x*=scale;
     _aPoint.twoD.y*=scale;
     _aPoint.z*=scale;
@@ -106,10 +108,11 @@ static const CGFloat angle = ANGLE;
     _dPoint.twoD.x*=scale;
     _dPoint.twoD.y*=scale;
     _dPoint.z*=scale;
+   
     [self goToZero:false orBack:true];
 }
 -(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector{
-    [self middleCalculate];
+   // [self middleCalculate];
     [self goToZero:true orBack:false];
     CGFloat tmp = angle;
     CGFloat buff = 0;
@@ -128,6 +131,7 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.y;
         _dPoint.twoD.y = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
+       
     }
     if(kindOfAxis == Y){
         if(vector == LEFT)
@@ -144,6 +148,7 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.x;
         _dPoint.twoD.x = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
+       
     }
     if(kindOfAxis == Z){
         if(vector == LEFT)
@@ -160,32 +165,35 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.x;
         _dPoint.twoD.x = buff*cos(tmp)+_dPoint.twoD.y*sin(tmp);
         _dPoint.twoD.y = -buff*sin(tmp)+_dPoint.twoD.y*cos(tmp);
+        
     }
     [self goToZero:false orBack:true];
 }
--(ASPyramid*)convertTo2d{
-    ASPyramid* myPyramidIn2D = [[ASPyramid alloc]init ];
+-(ASPyramid *)convertTo2d{
+    ASPyramid *twoDcoords = [[ASPyramid alloc]init];
     MyPoint tmp;
     tmp.twoD.x = _aPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.twoD.y = _aPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.z = _aPoint.z;
     tmp.z -= Z_PL;
-    myPyramidIn2D->_aPoint = tmp;
+    twoDcoords.aPoint = tmp;
     tmp.twoD.x = _bPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.twoD.y = _bPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _bPoint.z);
     tmp.z = _bPoint.z;
     tmp.z -= Z_PL;
-    myPyramidIn2D->_bPoint = tmp;
+    twoDcoords.bPoint = tmp;
     tmp.twoD.x = _cPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.twoD.y = _cPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _cPoint.z);
     tmp.z = _cPoint.z;
     tmp.z -= Z_PL;
-    myPyramidIn2D->_cPoint = tmp;
+    twoDcoords.cPoint = tmp;
     tmp.twoD.x = _dPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.twoD.y = _dPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _dPoint.z);
     tmp.z = _dPoint.z;
     tmp.z -= Z_PL;
-    myPyramidIn2D->_dPoint = tmp;
-    return myPyramidIn2D;
+    twoDcoords.dPoint = tmp;
+    
+    return twoDcoords;
 }
+
 @end

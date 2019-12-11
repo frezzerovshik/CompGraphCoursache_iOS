@@ -24,11 +24,11 @@
 //of movement. Example of parametr: @"Up"
 -(void)scaleWithCondition:(NSUInteger)typeOfScale;//Method will calculate new coords in conclusion with
 //type of change(upscale or downscale). Example of parametr: @"Up"
--(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSString*) vector;//Method will choose an axis
+-(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector;//Method will choose an axis
 //(x,y or z) and vector(left or right) to create a new coords to redraw parallelepiped. Example of parametrs
 //@"x",@"Left"
 -(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
 -(MyPoint)middleCalculate;
--(NSMutableArray*)convertTo2d;
+-(ASParallelepiped*)convertTo2d;
 
 @end
