@@ -18,13 +18,13 @@
 @property (nonatomic,assign) MyPoint hPoint;
 @property (nonatomic,assign) MyPoint middle;
 
--(instancetype) initWithPoints:(MyPoint)aInitValue:(MyPoint)bInitValue:(MyPoint)cInitValue:(MyPoint)dInitValue:(MyPoint)eInitValue:(MyPoint)fInitValue:(MyPoint)gInitValue:(MyPoint)hInitValue;//Method to initilize
+-(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue and:(MyPoint)eInitValue and:(MyPoint)fInitValue and:(MyPoint)gInitValue and:(MyPoint)hInitValue;//Method to initilize
 //new parallelepiped with coords of his pointd
--(void)movementWithVector:(NSString*) vector;//Method will calculate new coords in conclusion with vector
+-(void)movementWithVector:(NSUInteger) vector;//Method will calculate new coords in conclusion with vector
 //of movement. Example of parametr: @"Up"
--(void)scaleWithCondition:(NSString*)typeOfScale;//Method will calculate new coords in conclusion with
+-(void)scaleWithCondition:(NSUInteger)typeOfScale;//Method will calculate new coords in conclusion with
 //type of change(upscale or downscale). Example of parametr: @"Up"
--(void)rotateWithAxis: (NSString*)kindOfAxis andVector:(NSString*) vector;//Method will choose an axis
+-(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSString*) vector;//Method will choose an axis
 //(x,y or z) and vector(left or right) to create a new coords to redraw parallelepiped. Example of parametrs
 //@"x",@"Left"
 -(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;

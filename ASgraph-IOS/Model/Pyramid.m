@@ -35,7 +35,6 @@ static const CGFloat angle = ANGLE;
         NSLog(@"Error while using method: both arguments have the same values");
         return;
     }
-    
     MyPoint tmp = _middle;
     if(toZeroTrue == true){
         tmp.twoD.x = -_middle.twoD.x;
@@ -87,10 +86,10 @@ static const CGFloat angle = ANGLE;
         _dPoint.z+=movement;
     }
 }
--(void)scaleWithCondition:(NSUInteger)type{
+-(void)scaleWithCondition:(NSUInteger)condition{
     [self middleCalculate];
     [self goToZero:true orBack:false];
-    if(type == 1)
+    if(condition == PLUS_SIZE)
         scale = UPSCALE;
     else
         scale = DOWNSCALE;
@@ -131,7 +130,7 @@ static const CGFloat angle = ANGLE;
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
     }
     if(kindOfAxis == Y){
-        if(vector == RIGHT)
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.z*sin(tmp);

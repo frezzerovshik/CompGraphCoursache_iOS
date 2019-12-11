@@ -12,18 +12,44 @@
 @class ASPyramidPresentor;
 @class ASParallelepipedPresentor;
 @interface ViewController : UIViewController
-@property (strong , nonatomic) ASParallelepiped* myParallelepiped;
+
 @property (strong , nonatomic) IBOutlet ASParallelepipedPresentor* myParallelepipedPresentor;
 @property (strong , nonatomic) IBOutlet ASPyramidPresentor* myPyramidPresentor;
--(IBAction)goLeft:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)goRight:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)goDown:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)goUp:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)goNear:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)goFar:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)plusSize:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)minusSize:(id)sender withKindOfFigure:(NSString*)kindOf;
--(IBAction)rotateLeft:(id)sender withKindOfFigure:(NSString*)kindOf andNameOfAxis:(NSString*)axis;
--(IBAction)rotateRight:(id)sender withKindOfFigure:(NSString*)kindOf andNameOfAxis:(NSString*)axis;
+#pragma mark - Conversations of pyramid
+-(IBAction)movePyramidLeft:(id)sender;
+-(IBAction)movePyramidRight:(id)sender;
+-(IBAction)movePyramidUp:(id)sender;
+-(IBAction)movePyramidDown:(id)sender;
+-(IBAction)movePyramidNearer:(id)sender;
+-(IBAction)movePyramidFurther:(id)sender;
+
+-(IBAction)rotatePyramidLeftAroundX:(id)sender;
+-(IBAction)rotatePyramidLeftAroundY:(id)sender;
+-(IBAction)rotatePyramidLeftAroundZ:(id)sender;
+-(IBAction)rotatePyramidRightAroundX:(id)sender;
+-(IBAction)rotatePyramidRightAroundY:(id)sender;
+-(IBAction)rotatePyramidRightAroundZ:(id)sender;
+
+-(IBAction)makePyramidLarger:(id)sender;
+-(IBAction)makePyramidSmaller:(id)sender;
+#pragma mark - Conversations of parallelepiped
+-(IBAction)moveParallelepipedLeft:(id)sender;
+-(IBAction)moveParallelepipedRight:(id)sender;
+-(IBAction)moveParallelepipedUp:(id)sender;
+-(IBAction)moveParallelepipedDown:(id)sender;
+-(IBAction)moveParallelepipedNearer:(id)sender;
+-(IBAction)moveParallelepipedFurther:(id)sender;
+
+-(IBAction)rotateParallelepipedLeftAroundX:(id)sender;
+-(IBAction)rotateParallelepipedLeftAroundY:(id)sender;
+-(IBAction)rotateParallelepipedLeftAroundZ:(id)sender;
+-(IBAction)rotateParallelepipedRightAroundX:(id)sender;
+-(IBAction)rotateParallelepipedRightAroundY:(id)sender;
+-(IBAction)rotateParallelepipedRightAroundZ:(id)sender;
+
+-(IBAction)makeParallelepipedLarger:(id)sender;
+-(IBAction)makeParallelepipedSmaller:(id)sender;
+
+
 @end
 

@@ -7,14 +7,16 @@
 //
 #import <Foundation/Foundation.h>
 #import "Parallelepiped.h"
+#import "Defines_model.h"
 #define Z_PL -50
 #define Z_C -500
-@implementation ASParallelepiped
-NSInteger movement = 0;
-CGFloat scale = 0;
-const CGFloat angle = 0.02;
+@implementation ASParallelepiped{
+NSInteger movement ;
+    CGFloat scale;
+}
+static const CGFloat angle = 0.02;
 #pragma mark - Service methods
--(instancetype) initWithPoints:(MyPoint)aInitValue:(MyPoint)bInitValue:(MyPoint)cInitValue:(MyPoint)dInitValue:(MyPoint)eInitValue:(MyPoint)fInitValue:(MyPoint)gInitValue:(MyPoint)hInitValue{
+-(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue and:(MyPoint)eInitValue and:(MyPoint)fInitValue and:(MyPoint)gInitValue and:(MyPoint)hInitValue{
     self = [super init];
     if(self){
         _aPoint = aInitValue;
@@ -34,9 +36,8 @@ const CGFloat angle = 0.02;
         NSLog(@"Error while using method: both arguments have the same values");
         return;
     }
-    _middle = [self middleCalculate];
     MyPoint tmp = _middle;
-    if(toZeroTrue){
+    if(toZeroTrue == true){
         tmp.twoD.x = -_middle.twoD.x;
         tmp.twoD.y = -_middle.twoD.y;
         tmp.z = - _middle.z;
@@ -70,12 +71,12 @@ const CGFloat angle = 0.02;
     //Code will be here soon...Navernoye...
 }*/
 #pragma mark - Conversion methods
--(void)movementWithVector:(NSString *)vector{
-    if([vector compare:@"Up"]||[vector compare:@"Right"]||[vector compare:@"Nearer"])
+-(void)movementWithVector:(NSUInteger)vector{
+    if(vector == UP || vector == RIGHT || vector == Z_PLUS)
         movement = 5;
     else
         movement = -5;
-    if([vector compare:@"Up"]||[vector compare:@"Down"]){
+    if(vector == UP||vector == DOWN){
         _aPoint.twoD.y+=movement;
         _bPoint.twoD.y+=movement;
         _cPoint.twoD.y+=movement;
@@ -85,7 +86,7 @@ const CGFloat angle = 0.02;
         _gPoint.twoD.y+=movement;
         _hPoint.twoD.y+=movement;
     }
-    if([vector compare:@"Left"]||[vector compare:@"Right"]){
+    if(vector == LEFT||vector == RIGHT){
         _aPoint.twoD.x+=movement;
         _bPoint.twoD.x+=movement;
         _cPoint.twoD.x+=movement;
@@ -95,7 +96,7 @@ const CGFloat angle = 0.02;
         _gPoint.twoD.x+=movement;
         _hPoint.twoD.x+=movement;
     }
-    if([vector compare:@"Nearer"]||[vector compare:@"Farther"]){
+    if(vector == Z_PLUS||vector == Z_MINUS){
         _aPoint.z+=movement;
         _bPoint.z+=movement;
         _cPoint.z+=movement;
@@ -106,10 +107,10 @@ const CGFloat angle = 0.02;
         _hPoint.z+=movement;
     }
   }
--(void)scaleWithCondition:(NSString*)typeOfScale{
+-(void)scaleWithCondition:(NSUInteger)typeOfScale{
     [self middleCalculate];
     [self goToZero:true orBack:false];
-    if([typeOfScale compare:@"Up"])
+    if(typeOfScale == PLUS_SIZE)
         scale = 1.2;
     else
         scale = 0.7;
@@ -139,13 +140,13 @@ const CGFloat angle = 0.02;
     _hPoint.z*=scale;
     [self goToZero:false orBack:true];
 }
--(void)rotateWithAxis: (NSString*)kindOfAxis andVector:(NSString*) vector{
+-(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector{
 //Code will be soon too...
     [self goToZero:true orBack:false];
     CGFloat tmp = angle;
     CGFloat buff = 0;
-    if([vector compare:@"X"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == X){
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.y;
         _aPoint.twoD.y = buff*cos(tmp)+_aPoint.z*sin(tmp);
@@ -172,8 +173,8 @@ const CGFloat angle = 0.02;
         _hPoint.twoD.y = buff*cos(tmp)+_hPoint.z*sin(tmp);
         _hPoint.z = -buff*sin(tmp)+_hPoint.z*cos(tmp);
     }
-    if([vector compare:@"Y"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == Y){
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.z*sin(tmp);
@@ -200,8 +201,8 @@ const CGFloat angle = 0.02;
         _hPoint.twoD.x = buff*cos(tmp)+_hPoint.z*sin(tmp);
         _hPoint.z = -buff*sin(tmp)+_hPoint.z*cos(tmp);
     }
-    if([vector compare:@"Z"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == Z){
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.twoD.y*sin(tmp);

@@ -50,7 +50,7 @@
     CGContextAddLineToPoint(cont, tmp.cPoint.twoD.x, tmp.cPoint.twoD.y);
     CGContextMoveToPoint(cont, tmp.bPoint.twoD.x, tmp.bPoint.twoD.y);
     CGContextAddLineToPoint(cont, tmp.dPoint.twoD.x, tmp.dPoint.twoD.y);
-    CGContextSetStrokeColorWithColor(cont, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(cont, [UIColor greenColor].CGColor);
     CGContextStrokePath(cont);
     
 }
