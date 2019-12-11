@@ -9,16 +9,10 @@
 #import <UIKit/UIKit.h>
 @class ASPyramid;
 @interface ASPyramidPresentor : UIView
+@property (strong , nonatomic ) ASPyramid* pyramid;
+@property (nonatomic , assign) BOOL wasBuilt;
 
-//Конструктор из мяса и костей
--(instancetype)initWithExample: (ASPyramid*) example andView:(UIView*)myView;
-#pragma mark - building methods
--(void) buildFrame;
--(void) buildPyramidOnView;
--(void) deletePyramid;
--(void) deleteInvizibleLines;
--(void) drawZbuffer;
-#pragma mark - colorful methods
--(void) fillingFigureWithColor: (UIColor*) color;
+/*-(void) deleteInvizibleLines;
 -(void) buildShadow;
+-(void) fillPyramid;*/
 @end

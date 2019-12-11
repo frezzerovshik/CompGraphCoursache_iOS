@@ -107,6 +107,7 @@ const CGFloat angle = 0.02;
     }
   }
 -(void)scaleWithCondition:(NSString*)typeOfScale{
+    [self middleCalculate];
     [self goToZero:true orBack:false];
     if([typeOfScale compare:@"Up"])
         scale = 1.2;

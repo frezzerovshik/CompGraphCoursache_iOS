@@ -11,14 +11,17 @@
 #import "Defines_model.h"
 
 
-@implementation ASPyramid
-NSInteger movement = MOVEMENT;
-CGFloat scale = 0;
-const CGFloat angle = ANGLE;
+@implementation ASPyramid{
+NSInteger movement ;
+CGFloat scale ;
+}
+static const CGFloat angle = ANGLE;
 #pragma mark - Service methods
--(instancetype) initWithPoints:(MyPoint)aInitValue:(MyPoint)bInitValue:(MyPoint)cInitValue:(MyPoint)dInitValue{
+-(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue{
     self = [super init];
     if(self){
+        movement = MOVEMENT;
+        scale = 0;
         _aPoint = aInitValue;
         _bPoint = bInitValue;
         _cPoint = cInitValue;
@@ -32,9 +35,9 @@ const CGFloat angle = ANGLE;
         NSLog(@"Error while using method: both arguments have the same values");
         return;
     }
-    _middle = [self middleCalculate];
+    
     MyPoint tmp = _middle;
-    if(toZeroTrue){
+    if(toZeroTrue == true){
         tmp.twoD.x = -_middle.twoD.x;
         tmp.twoD.y = -_middle.twoD.y;
         tmp.z = - _middle.z;
@@ -52,40 +55,46 @@ const CGFloat angle = ANGLE;
     _dPoint.twoD.y+=tmp.twoD.y;
     _dPoint.z+=tmp.z;
 }
-/*-(MyPoint)middleCalculate{
+-(MyPoint)middleCalculate{
  //Code will be here soon...Navernoye...
- }*/
+    MyPoint centerOfGravity;
+    centerOfGravity.twoD.x = (_aPoint.twoD.x+_bPoint.twoD.x+_cPoint.twoD.x+_dPoint.twoD.x)/NUM_OF_PYRAMID_TOPS;
+    centerOfGravity.twoD.y = (_aPoint.twoD.y+_bPoint.twoD.y+_cPoint.twoD.y+_dPoint.twoD.y)/NUM_OF_PYRAMID_TOPS;
+    return centerOfGravity;
+ }
 #pragma mark - Conversion methods
--(void)movementWithVector:(NSString *)vector{
-    if([vector compare:@"Up"]||[vector compare:@"Right"]||[vector compare:@"Nearer"])
+-(void)movementWithVector:(NSUInteger)vector{
+    if(vector == UP||vector == RIGHT||vector == Z_PLUS)
         movement = MOVEMENT;
     else
         movement = -MOVEMENT;
-    if([vector compare:@"Up"]||[vector compare:@"Down"]){
+    if(vector == UP || vector == DOWN){
         _aPoint.twoD.y+=movement;
         _bPoint.twoD.y+=movement;
         _cPoint.twoD.y+=movement;
         _dPoint.twoD.y+=movement;
     }
-    if([vector compare:@"Left"]||[vector compare:@"Right"]){
+    if(vector == LEFT || vector == RIGHT){
         _aPoint.twoD.x+=movement;
         _bPoint.twoD.x+=movement;
         _cPoint.twoD.x+=movement;
         _dPoint.twoD.x+=movement;
     }
-    if([vector compare:@"Nearer"]||[vector compare:@"Farther"]){
+    if(vector == Z_PLUS || vector == Z_MINUS){
         _aPoint.z+=movement;
         _bPoint.z+=movement;
         _cPoint.z+=movement;
         _dPoint.z+=movement;
     }
 }
--(void)scaleWithCondition:(NSString*)typeOfScale{
+-(void)scaleWithCondition:(NSUInteger)type{
+    [self middleCalculate];
     [self goToZero:true orBack:false];
-    if([typeOfScale compare:@"Up"])
+    if(type == 1)
         scale = UPSCALE;
     else
         scale = DOWNSCALE;
+    
     _aPoint.twoD.x*=scale;
     _aPoint.twoD.y*=scale;
     _aPoint.z*=scale;
@@ -100,12 +109,13 @@ const CGFloat angle = ANGLE;
     _dPoint.z*=scale;
     [self goToZero:false orBack:true];
 }
--(void)rotateWithAxis: (NSString*)kindOfAxis andVector:(NSString*) vector{
+-(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector{
+    [self middleCalculate];
     [self goToZero:true orBack:false];
     CGFloat tmp = angle;
     CGFloat buff = 0;
-    if([vector compare:@"X"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == X){
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.y;
         _aPoint.twoD.y = buff*cos(tmp)+_aPoint.z*sin(tmp);
@@ -120,8 +130,8 @@ const CGFloat angle = ANGLE;
         _dPoint.twoD.y = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
     }
-    if([vector compare:@"Y"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == Y){
+        if(vector == RIGHT)
             tmp = -tmp;
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.z*sin(tmp);
@@ -136,8 +146,8 @@ const CGFloat angle = ANGLE;
         _dPoint.twoD.x = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
     }
-    if([vector compare:@"Z"]){
-        if([vector compare:@"Left"])
+    if(kindOfAxis == Z){
+        if(vector == LEFT)
             tmp = -tmp;
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.twoD.y*sin(tmp);
@@ -155,7 +165,7 @@ const CGFloat angle = ANGLE;
     [self goToZero:false orBack:true];
 }
 -(ASPyramid*)convertTo2d{
-    ASPyramid* myPyramidIn2D;
+    ASPyramid* myPyramidIn2D = [[ASPyramid alloc]init ];
     MyPoint tmp;
     tmp.twoD.x = _aPoint.twoD.x*(Z_C - Z_PL) / (Z_C - _aPoint.z);
     tmp.twoD.y = _aPoint.twoD.y*(Z_C - Z_PL) / (Z_C - _aPoint.z);

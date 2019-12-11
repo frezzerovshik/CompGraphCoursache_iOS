@@ -8,20 +8,28 @@
 
 #import "ViewController.h"
 #import "ASPyramidPresentor.h"
+#import "Pyramid.h"
+#import "Defines_model.h"
 @interface ViewController ()
-@property (strong,nonatomic) ASPyramidPresentor *workingSessionPyraminHandler;
 @end
 
 @implementation ViewController
 -(void)viewWillAppear:(BOOL)animated{
-    
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _workingSessionPyraminHandler = [[ASPyramidPresentor alloc] init];
-    [_workingSessionPyraminHandler buildPyramidOnView];
+   
 }
-
-
+-(IBAction) goLeft:(id)sender withKindOfFigure:(NSString *)kindOf{
+    for(int i = 0;i<10;++i){
+    [_myPyramidPresentor.pyramid rotateWithAxis:Z andVector:LEFT];
+    [_myPyramidPresentor setNeedsDisplay];
+    }
+}
+-(IBAction) plusSize:(id)sender withKindOfFigure:(NSString *)kindOf{
+    
+    [_myPyramidPresentor.pyramid scaleWithCondition:1];
+    [_myPyramidPresentor setNeedsDisplay];
+}
 @end

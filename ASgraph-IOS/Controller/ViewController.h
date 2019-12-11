@@ -13,9 +13,8 @@
 @class ASParallelepipedPresentor;
 @interface ViewController : UIViewController
 @property (strong , nonatomic) ASParallelepiped* myParallelepiped;
-@property (strong , nonatomic) ASPyramid* myPyramid;
-@property (strong , nonatomic) ASParallelepipedPresentor* myParallelepipedPresentor;
-@property (strong , nonatomic) ASPyramidPresentor* myPyramidPresentor;
+@property (strong , nonatomic) IBOutlet ASParallelepipedPresentor* myParallelepipedPresentor;
+@property (strong , nonatomic) IBOutlet ASPyramidPresentor* myPyramidPresentor;
 -(IBAction)goLeft:(id)sender withKindOfFigure:(NSString*)kindOf;
 -(IBAction)goRight:(id)sender withKindOfFigure:(NSString*)kindOf;
 -(IBAction)goDown:(id)sender withKindOfFigure:(NSString*)kindOf;
