@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class ASPyramid;
-@interface ASPyramidPresentor : UIView
+@interface ASPyramidView : UIView
 @property (strong , nonatomic ) ASPyramid* pyramid;
 @property (nonatomic , assign) BOOL wasBuilt;
 
--(void) deleteInvizibleLines;
-/*-(void) buildShadow;
--(void) fillPyramid;*/
+- (void)deleteInvizibleLinesWithRect:(CGRect)rect;
+/*- (void)buildShadow;
+- (void)fillPyramid;*/
 @end

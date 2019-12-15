@@ -15,13 +15,13 @@
 		3234A8D3233E48A600341027 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8D2233E48A600341027 /* main.m */; };
 		3234A8DC233E48E900341027 /* Parallelepiped.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8DB233E48E900341027 /* Parallelepiped.m */; };
 		3234A8DF233E48FC00341027 /* Pyramid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8DE233E48FC00341027 /* Pyramid.m */; };
-		3234A8E3233E49EA00341027 /* ASPyramidPresentor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8E2233E49EA00341027 /* ASPyramidPresentor.m */; };
-		3234A8E6233E4A0700341027 /* ASParallelepipedPresentor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */; };
+		3234A8E3233E49EA00341027 /* ASPyramidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8E2233E49EA00341027 /* ASPyramidView.m */; };
+		3234A8E6233E4A0700341027 /* ASParallelepipedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234A8E5233E4A0700341027 /* ASParallelepipedView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		322FAFAC2344AB0B002709CF /* Defines_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines_model.h; sourceTree = "<group>"; };
-		322FAFAE2344AC25002709CF /* Defines_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines_view.h; sourceTree = "<group>"; };
+		322FAFAE2344AC25002709CF /* DefinesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefinesView.h; sourceTree = "<group>"; };
 		3234A8C0233E48A300341027 /* ASgraph-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASgraph-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3234A8C3233E48A300341027 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3234A8C4233E48A300341027 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -37,10 +37,10 @@
 		3234A8DD233E48F300341027 /* Pyramid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pyramid.h; sourceTree = "<group>"; };
 		3234A8DE233E48FC00341027 /* Pyramid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pyramid.m; sourceTree = "<group>"; };
 		3234A8E0233E490600341027 /* Point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		3234A8E2233E49EA00341027 /* ASPyramidPresentor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASPyramidPresentor.m; sourceTree = "<group>"; };
-		3234A8E4233E49F800341027 /* ASPyramidPresentor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPyramidPresentor.h; sourceTree = "<group>"; };
-		3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASParallelepipedPresentor.m; sourceTree = "<group>"; };
-		3234A8E7233E4A7500341027 /* ASParallelepipedPresentor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASParallelepipedPresentor.h; sourceTree = "<group>"; };
+		3234A8E2233E49EA00341027 /* ASPyramidView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASPyramidView.m; sourceTree = "<group>"; };
+		3234A8E4233E49F800341027 /* ASPyramidView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPyramidView.h; sourceTree = "<group>"; };
+		3234A8E5233E4A0700341027 /* ASParallelepipedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASParallelepipedView.m; sourceTree = "<group>"; };
+		3234A8E7233E4A7500341027 /* ASParallelepipedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASParallelepipedView.h; sourceTree = "<group>"; };
 		32CDE08E2342E9B700FC4C6A /* zBuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zBuff.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,12 +112,12 @@
 		3234A8E1233E49C700341027 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3234A8E2233E49EA00341027 /* ASPyramidPresentor.m */,
-				3234A8E4233E49F800341027 /* ASPyramidPresentor.h */,
-				3234A8E5233E4A0700341027 /* ASParallelepipedPresentor.m */,
-				3234A8E7233E4A7500341027 /* ASParallelepipedPresentor.h */,
+				3234A8E2233E49EA00341027 /* ASPyramidView.m */,
+				3234A8E4233E49F800341027 /* ASPyramidView.h */,
+				3234A8E5233E4A0700341027 /* ASParallelepipedView.m */,
+				3234A8E7233E4A7500341027 /* ASParallelepipedView.h */,
 				32CDE08E2342E9B700FC4C6A /* zBuff.h */,
-				322FAFAE2344AC25002709CF /* Defines_view.h */,
+				322FAFAE2344AC25002709CF /* DefinesView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +157,15 @@
 		3234A8B8233E48A300341027 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+				);
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Артем Шарапов";
 				TargetAttributes = {
@@ -202,9 +211,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3234A8C8233E48A300341027 /* ViewController.m in Sources */,
-				3234A8E3233E49EA00341027 /* ASPyramidPresentor.m in Sources */,
+				3234A8E3233E49EA00341027 /* ASPyramidView.m in Sources */,
 				3234A8D3233E48A600341027 /* main.m in Sources */,
-				3234A8E6233E4A0700341027 /* ASParallelepipedPresentor.m in Sources */,
+				3234A8E6233E4A0700341027 /* ASParallelepipedView.m in Sources */,
 				3234A8C5233E48A300341027 /* AppDelegate.m in Sources */,
 				3234A8DF233E48FC00341027 /* Pyramid.m in Sources */,
 				3234A8DC233E48E900341027 /* Parallelepiped.m in Sources */,

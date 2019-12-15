@@ -6,13 +6,13 @@
 //  Copyright © 2019 Артем Шарапов. All rights reserved.
 //
 
-#import "ASPyramidPresentor.h"
+#import "ASPyramidView.h"
 #import "Pyramid.h"
+#import "zBuff.h"
 
 
 
-
-@implementation ASPyramidPresentor
+@implementation ASPyramidView
 
 -(void)drawRect:(CGRect)rect{
     if(_wasBuilt != YES){
@@ -57,8 +57,25 @@
     CGContextStrokePath(cont);
     
 }
--(void)deleteInvizibleLines{
+-(void)deleteInvizibleLinesWithRect:(CGRect)rect{
     /*Задача на ночь*/
+    CGFloat zValuesOfTops[4] = {_pyramid.aPoint.z , _pyramid.bPoint.z , _pyramid.cPoint.z, _pyramid.dPoint.z};//Создаем массив, хранящий в себе координаты по оси Z для каждой вершины для нахождения самой минимальной
+    CGFloat zMin = 1000;
+    for(int i = 0;i<4;++i){
+        if(zValuesOfTops[i] < zMin )
+            zMin = zValuesOfTops[i];
+    }
+    zBuff zBuffer[(int)(rect.size.height * rect.size.width)];
+    int i = 0;
+    for(CGFloat x = 0;x<rect.size.width;++x){
+        for(CGFloat y = 0; y<rect.size.height;++y){
+            zBuffer[i].coords.twoD.x = x;
+            zBuffer[i].coords.twoD.y = y;
+            zBuffer[i].coords.z = zMin;
+            zBuffer[i].color = [[UIColor alloc] initWithCGColor:[UIColor whiteColor].CGColor];
+            i++;
+        }
+    }
 }
 
 

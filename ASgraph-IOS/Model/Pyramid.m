@@ -63,10 +63,10 @@ static const CGFloat angle = ANGLE;
 }
 #pragma mark - Conversion methods
 -(void)movementWithVector:(NSUInteger)vector{
-    if(vector == UP || vector == RIGHT || vector == Z_PLUS)
-        movement = 5;
-    else
+    if(vector == UP || vector == LEFT || vector == Z_PLUS)
         movement = -5;
+    else
+        movement = 5;
     if(vector == UP||vector == DOWN){
         _aPoint.twoD.y+=movement;
         _bPoint.twoD.y+=movement;
@@ -111,14 +111,14 @@ static const CGFloat angle = ANGLE;
    
     [self goToZero:false orBack:true];
 }
--(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector{
+-(void)rotateWithVector:(NSUInteger)vector{
    // [self middleCalculate];
     [self goToZero:true orBack:false];
     CGFloat tmp = angle;
     CGFloat buff = 0;
-    if(kindOfAxis == X){
-        if(vector == LEFT)
-            tmp = -tmp;
+    if(vector == leftX || vector == leftY || vector == leftZ)
+        tmp *= -1;
+    if(vector == leftX || vector == rightX){
         buff = _aPoint.twoD.y;
         _aPoint.twoD.y = buff*cos(tmp)+_aPoint.z*sin(tmp);
         _aPoint.z = -buff*sin(tmp)+_aPoint.z*cos(tmp);
@@ -131,11 +131,8 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.y;
         _dPoint.twoD.y = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
-       
     }
-    if(kindOfAxis == Y){
-        if(vector == LEFT)
-            tmp = -tmp;
+    if(vector == leftY || vector == rightY){
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.z*sin(tmp);
         _aPoint.z = -buff*sin(tmp)+_aPoint.z*cos(tmp);
@@ -148,11 +145,8 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.x;
         _dPoint.twoD.x = buff*cos(tmp)+_dPoint.z*sin(tmp);
         _dPoint.z = -buff*sin(tmp)+_dPoint.z*cos(tmp);
-       
     }
-    if(kindOfAxis == Z){
-        if(vector == LEFT)
-            tmp = -tmp;
+    if(vector == leftZ || vector == rightZ){
         buff = _aPoint.twoD.x;
         _aPoint.twoD.x = buff*cos(tmp)+_aPoint.twoD.y*sin(tmp);
         _aPoint.twoD.y = -buff*sin(tmp)+_aPoint.twoD.y*cos(tmp);
@@ -165,7 +159,6 @@ static const CGFloat angle = ANGLE;
         buff = _dPoint.twoD.x;
         _dPoint.twoD.x = buff*cos(tmp)+_dPoint.twoD.y*sin(tmp);
         _dPoint.twoD.y = -buff*sin(tmp)+_dPoint.twoD.y*cos(tmp);
-        
     }
     [self goToZero:false orBack:true];
 }

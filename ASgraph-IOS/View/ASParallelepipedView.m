@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ASParallelepipedPresentor.h"
+#import "ASParallelepipedView.h"
 #import "Parallelepiped.h"
 #import "Point.h"
-@implementation ASParallelepipedPresentor
+@implementation ASParallelepipedView
 
 -(void) drawRect:(CGRect) rect{
     if(_wasBuilt != YES){

@@ -17,18 +17,24 @@
 @property (nonatomic,assign) MyPoint gPoint;
 @property (nonatomic,assign) MyPoint hPoint;
 @property (nonatomic,assign) MyPoint middle;
-
--(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue and:(MyPoint)eInitValue and:(MyPoint)fInitValue and:(MyPoint)gInitValue and:(MyPoint)hInitValue;//Method to initilize
-//new parallelepiped with coords of his pointd
--(void)movementWithVector:(NSUInteger) vector;//Method will calculate new coords in conclusion with vector
+//Method to initilize new parallelepiped with coords of his pointd
+- (instancetype) initWithPoints:(MyPoint)aInitValue
+                            and:(MyPoint)bInitValue
+                            and:(MyPoint)cInitValue
+                            and:(MyPoint)dInitValue
+                            and:(MyPoint)eInitValue
+                            and:(MyPoint)fInitValue
+                            and:(MyPoint)gInitValue
+                            and:(MyPoint)hInitValue;
+- (void)movementWithVector:(NSUInteger)vector;//Method will calculate new coords in conclusion with vector
 //of movement. Example of parametr: @"Up"
--(void)scaleWithCondition:(NSUInteger)typeOfScale;//Method will calculate new coords in conclusion with
+- (void)scaleWithCondition:(NSUInteger)typeOfScale;//Method will calculate new coords in conclusion with
 //type of change(upscale or downscale). Example of parametr: @"Up"
--(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector;//Method will choose an axis
+- (void)rotateWithAxis:(NSUInteger)kindOfAxis andVector:(NSUInteger)vector;//Method will choose an axis
 //(x,y or z) and vector(left or right) to create a new coords to redraw parallelepiped. Example of parametrs
 //@"x",@"Left"
--(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
--(MyPoint)middleCalculate;
--(ASParallelepiped*)convertTo2d;
+- (void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
+- (MyPoint)middleCalculate;
+- (ASParallelepiped*)convertTo2d;
 
 @end

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyB-VI-Sw7" customClass="ASPyramidPresentor">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyB-VI-Sw7" customClass="ASPyramidView">
                                 <rect key="frame" x="20" y="20" width="312" height="187"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="187" id="hgq-QX-7NR"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwM-zd-O4S" customClass="ASParallelepipedPresentor">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwM-zd-O4S" customClass="ASParallelepipedView">
                                 <rect key="frame" x="340" y="20" width="312" height="187"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -43,9 +43,6 @@
                                 <state key="normal" title="+">
                                     <color key="titleShadowColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <action selector="makePyramidLarger:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H1z-SU-ek9"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFm-zY-2pI">
                                 <rect key="frame" x="20" y="290" width="34" height="34"/>
@@ -57,16 +54,13 @@
                                 <state key="normal" title="-">
                                     <color key="titleShadowColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <action selector="makePyramidSmaller:" destination="BYZ-38-t0r" eventType="touchUpInside" id="an9-fm-XLF"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUK-Mb-782">
                                 <rect key="frame" x="65" y="335" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="LX"/>
                                 <connections>
-                                    <action selector="rotatePyramidLeftAroundX:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Err-RY-3R3"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z6M-Q6-0Ju"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNq-eD-V32">
@@ -74,7 +68,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="RX"/>
                                 <connections>
-                                    <action selector="rotatePyramidRightAroundX:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0fO-8b-3Mq"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jXh-n2-DMe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeT-Pf-fqr">
@@ -82,7 +76,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="RY"/>
                                 <connections>
-                                    <action selector="rotatePyramidRightAroundY:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hQ0-aF-m3x"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNf-d6-Tc5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-k1-kcx">
@@ -90,7 +84,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="LY"/>
                                 <connections>
-                                    <action selector="rotatePyramidLeftAroundY:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RE3-rv-sMl"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EUJ-rE-mlk"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pyramid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJG-s0-XRT">
@@ -110,7 +104,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="LZ"/>
                                 <connections>
-                                    <action selector="rotatePyramidLeftAroundZ:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hev-Bt-YBo"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K4z-fh-uSd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZP-Jm-aIa">
@@ -118,7 +112,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="RZ"/>
                                 <connections>
-                                    <action selector="rotatePyramidRightAroundZ:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s53-s7-TlX"/>
+                                    <action selector="rotatePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AwO-YT-983"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Egn-Af-zr0">
@@ -126,7 +120,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Up"/>
                                 <connections>
-                                    <action selector="movePyramidUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5fN-OE-JdM"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="01b-Jj-88y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuJ-nV-ewv">
@@ -134,7 +128,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="L"/>
                                 <connections>
-                                    <action selector="movePyramidLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aa1-6D-0CG"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p42-a0-psk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udm-8l-YfU">
@@ -142,7 +136,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="R"/>
                                 <connections>
-                                    <action selector="movePyramidRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Vj-T3-aHD"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fIk-h9-k3W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Nm-6u-Mj0">
@@ -150,7 +144,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="D"/>
                                 <connections>
-                                    <action selector="movePyramidDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0k0-a8-E0a"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="962-CA-HJP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXH-UP-eIE">
@@ -158,7 +152,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="N"/>
                                 <connections>
-                                    <action selector="movePyramidNearer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rrL-Nr-bLO"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0UM-hH-Fz5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWS-dO-qfq">
@@ -166,7 +160,7 @@
                                 <color key="backgroundColor" red="0.99785326799999996" green="1" blue="0.97947601360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="F"/>
                                 <connections>
-                                    <action selector="movePyramidFurther:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s0C-m8-juQ"/>
+                                    <action selector="movePyramid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oky-WR-Mvw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVs-jH-adU">
@@ -175,9 +169,6 @@
                                 <state key="normal" title="N">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedNearer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BQG-G9-oRc"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77u-4R-QhN">
                                 <rect key="frame" x="354" y="337" width="30" height="30"/>
@@ -185,9 +176,6 @@
                                 <state key="normal" title="F">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedFurther:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DSF-HW-OYy"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqM-hy-J5n">
                                 <rect key="frame" x="414" y="243" width="30" height="30"/>
@@ -195,9 +183,6 @@
                                 <state key="normal" title="Up">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5F3-Wa-f3U"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsb-il-HyT">
                                 <rect key="frame" x="414" y="335" width="30" height="30"/>
@@ -205,9 +190,6 @@
                                 <state key="normal" title="D">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qFA-kC-cQT"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-in-b8R">
                                 <rect key="frame" x="391" y="286" width="30" height="30"/>
@@ -215,9 +197,6 @@
                                 <state key="normal" title="L">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yg0-hN-3Lb"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSa-Zq-i2V">
                                 <rect key="frame" x="448" y="285" width="30" height="30"/>
@@ -225,9 +204,6 @@
                                 <state key="normal" title="R">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveParallelepipedRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rqs-T3-mht"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-no-RPt">
                                 <rect key="frame" x="618" y="248" width="34" height="34"/>
@@ -239,9 +215,6 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="makeParallelepipedLarger:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g3S-tY-2yC"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdC-qL-Bjv">
                                 <rect key="frame" x="622" y="290" width="30" height="30"/>
@@ -249,9 +222,6 @@
                                 <state key="normal" title="-">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="makeParallelepipedSmaller:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8fG-rx-JQ6"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKy-Pi-0Tb">
                                 <rect key="frame" x="580" y="290" width="30" height="30"/>
@@ -259,9 +229,6 @@
                                 <state key="normal" title="RZ">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedRightAroundZ:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LJH-hB-d10"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8U-52-dWw">
                                 <rect key="frame" x="538" y="290" width="30" height="30"/>
@@ -269,9 +236,6 @@
                                 <state key="normal" title="RY">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedRightAroundY:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfX-Fj-awq"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryY-as-4VX">
                                 <rect key="frame" x="496" y="290" width="30" height="30"/>
@@ -279,9 +243,6 @@
                                 <state key="normal" title="RX">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedRightAroundX:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDY-kb-owE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUD-pD-QvF">
                                 <rect key="frame" x="496" y="335" width="30" height="30"/>
@@ -289,9 +250,6 @@
                                 <state key="normal" title="LX">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedLeftAroundX:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gJU-wc-aon"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBM-BK-O9t">
                                 <rect key="frame" x="538" y="335" width="30" height="30"/>
@@ -299,9 +257,6 @@
                                 <state key="normal" title="LY">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedLeftAroundY:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n19-RH-1jI"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nvz-vP-0se">
                                 <rect key="frame" x="580" y="335" width="30" height="30"/>
@@ -309,9 +264,6 @@
                                 <state key="normal" title="LZ">
                                     <color key="titleColor" name="unemphasizedSelectedTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
-                                <connections>
-                                    <action selector="rotateParallelepipedLeftAroundZ:" destination="BYZ-38-t0r" eventType="touchUpInside" id="96D-5E-JDq"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="findHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -385,8 +337,20 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="myParallelepipedPresentor" destination="cwM-zd-O4S" id="1mp-oJ-YSh"/>
-                        <outlet property="myPyramidPresentor" destination="oyB-VI-Sw7" id="xtD-WK-uMn"/>
+                        <outlet property="downMovementOfPyramid" destination="0Nm-6u-Mj0" id="EiR-HM-1tl"/>
+                        <outlet property="furtherMovementOfPyramid" destination="WWS-dO-qfq" id="Cov-66-iIw"/>
+                        <outlet property="leftMovementOfPyramid" destination="wuJ-nV-ewv" id="syb-Fg-HG3"/>
+                        <outlet property="leftXbuttonOfPyramid" destination="yUK-Mb-782" id="Ao0-lC-e20"/>
+                        <outlet property="leftYbuttonOfPyramid" destination="gt5-k1-kcx" id="YdF-fl-XZQ"/>
+                        <outlet property="leftZbuttonOfPyramid" destination="Kg4-Yu-bGL" id="FI5-FY-wrh"/>
+                        <outlet property="myParallelepipedView" destination="cwM-zd-O4S" id="Xdd-ue-eBu"/>
+                        <outlet property="myPyramidView" destination="oyB-VI-Sw7" id="dBG-DW-Uca"/>
+                        <outlet property="nearMovementOfPyramid" destination="sXH-UP-eIE" id="pmK-3T-iLR"/>
+                        <outlet property="rightMovementOfPyramid" destination="udm-8l-YfU" id="8Bm-wq-4Hh"/>
+                        <outlet property="rightXbuttonOfPyramid" destination="RNq-eD-V32" id="LHR-ic-X34"/>
+                        <outlet property="rightYbuttonOfPyramid" destination="GeT-Pf-fqr" id="SGw-sE-ZyF"/>
+                        <outlet property="rightZbuttonOfPyramid" destination="XZP-Jm-aIa" id="cBQ-2P-6KJ"/>
+                        <outlet property="upMovementOfPyramid" destination="Egn-Af-zr0" id="vym-rJ-2hE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

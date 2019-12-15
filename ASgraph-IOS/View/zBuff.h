@@ -8,6 +8,5 @@
 #import "Point.h"
 typedef struct zBuff{
     MyPoint coords;
-    BOOL isBlack;
     UIColor *color;
 }zBuff;

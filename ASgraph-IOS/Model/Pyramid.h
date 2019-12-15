@@ -16,11 +16,14 @@
 @property (nonatomic,assign) MyPoint dPoint;
 @property (nonatomic,assign) MyPoint middle;
 
--(instancetype) initWithPoints:(MyPoint)aInitValue and:(MyPoint)bInitValue and:(MyPoint)cInitValue and:(MyPoint)dInitValue;
--(void)movementWithVector:(NSUInteger) vector;
--(void)scaleWithCondition:(NSUInteger) condition;
--(void)rotateWithAxis: (NSUInteger)kindOfAxis andVector:(NSUInteger) vector;
--(void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
--(MyPoint)middleCalculate;
--(ASPyramid* )convertTo2d;
+- (instancetype) initWithPoints:(MyPoint)aInitValue
+                            and:(MyPoint)bInitValue
+                            and:(MyPoint)cInitValue
+                            and:(MyPoint)dInitValue;
+- (void)movementWithVector:(NSUInteger)vector;
+- (void)scaleWithCondition:(NSUInteger)condition;
+- (void)rotateWithVector:(NSUInteger)vector;
+- (void)goToZero:(BOOL)toZeroTrue orBack:(BOOL)toBackTrue;
+- (MyPoint)middleCalculate;
+- (ASPyramid *)convertTo2d;
 @end

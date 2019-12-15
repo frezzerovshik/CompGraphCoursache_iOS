@@ -7,164 +7,131 @@
 //
 
 #import "ViewController.h"
-#import "ASPyramidPresentor.h"
-#import "ASParallelepipedPresentor.h"
+
+#import "ASPyramidView.h"
+
+#import "ASParallelepipedView.h"
+
 #import "Pyramid.h"
+
 #import "Parallelepiped.h"
+
 #import "Defines_model.h"
+
+enum directionOfMovement {left = 0,right,down,up,nearer,further};
+enum directionOfRotation {eLeftX = 0,eLeftY = 1,eLeftZ = 2, eRightX = 3,eRightY = 4,eRightZ = 5};
 @interface ViewController ()
+@property (strong , nonatomic) IBOutlet ASParallelepipedView* myParallelepipedView;
+@property (strong , nonatomic) IBOutlet ASPyramidView* myPyramidView;
+
+@property (strong , nonatomic) IBOutlet UIButton *leftMovementOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *rightMovementOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *upMovementOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *downMovementOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *nearMovementOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *furtherMovementOfPyramid;
+
+@property (strong , nonatomic) IBOutlet UIButton *leftXbuttonOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *rightXbuttonOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *leftYbuttonOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *rightYbuttonOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *leftZbuttonOfPyramid;
+@property (strong , nonatomic) IBOutlet UIButton *rightZbuttonOfPyramid;
+
+- (IBAction)movePyramid:(UIButton *)sender;
+- (IBAction)rotatePyramid:(UIButton *)sender;
+- (IBAction)changeSizePyramid:(UIButton *)sender;
+
+- (IBAction)moveParallelepiped:(UIButton *)sender;
+- (IBAction)rotateParallelepiped:(UIButton *)sender;
+- (IBAction)changeSizeParallelepiped:(UIButton *)sender;
 @end
 
 @implementation ViewController
--(void)viewWillAppear:(BOOL)animated{
-
-}
-- (void)viewDidLoad {
+- (void)viewDidLoad{
     [super viewDidLoad];
-   
+    //initialization of movement buttons
+    [_leftMovementOfPyramid setTag:LEFT];
+    [_rightMovementOfPyramid setTag:RIGHT];
+    [_downMovementOfPyramid setTag:DOWN];
+    [_upMovementOfPyramid setTag:UP];
+    [_nearMovementOfPyramid setTag:Z_PLUS];
+    [_furtherMovementOfPyramid setTag:Z_MINUS];
+    
+    //initialization of rotation button
+    [_leftXbuttonOfPyramid setTag:0];
+    [_leftYbuttonOfPyramid setTag:1];
+    [_leftZbuttonOfPyramid setTag:2];
+    [_rightXbuttonOfPyramid setTag:3];
+    [_rightYbuttonOfPyramid setTag:4];
+    [_rightZbuttonOfPyramid setTag:5];
+    
 }
-#pragma mark - Conversations of pyramid
--(IBAction)movePyramidLeft:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:LEFT];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)movePyramidRight:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:RIGHT];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)movePyramidUp:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:DOWN];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)movePyramidDown:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:UP];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)movePyramidNearer:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:Z_PLUS];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)movePyramidFurther:(id)sender{
-    [_myPyramidPresentor.pyramid movementWithVector:Z_MINUS];
-    [_myPyramidPresentor setNeedsDisplay];
-}
-
--(IBAction)rotatePyramidLeftAroundX:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:X andVector:LEFT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotatePyramidLeftAroundY:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:Y andVector:LEFT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotatePyramidLeftAroundZ:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:Z andVector:LEFT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotatePyramidRightAroundX:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:X andVector:RIGHT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotatePyramidRightAroundY:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:Y andVector:RIGHT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotatePyramidRightAroundZ:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myPyramidPresentor.pyramid rotateWithAxis:Z andVector:RIGHT];
-    [_myPyramidPresentor setNeedsDisplay];
-     }
-}
--(IBAction)makePyramidLarger:(id)sender{
-    [_myPyramidPresentor.pyramid scaleWithCondition:PLUS_SIZE];
-    [_myPyramidPresentor setNeedsDisplay];
-}
--(IBAction)makePyramidSmaller:(id)sender{
-    [_myPyramidPresentor.pyramid scaleWithCondition:MINUS_SIZE];
-    [_myPyramidPresentor setNeedsDisplay];
-}
-
-#pragma mark - parallelepiped
-
--(IBAction)moveParallelepipedLeft:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:LEFT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)moveParallelepipedRight:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:RIGHT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)moveParallelepipedUp:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:DOWN];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)moveParallelepipedDown:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:UP];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)moveParallelepipedNearer:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:Z_PLUS];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)moveParallelepipedFurther:(id)sender{
-    [_myParallelepipedPresentor.parall movementWithVector:Z_MINUS];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
-
--(IBAction)rotateParallelepipedLeftAroundX:(id)sender{
-    for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:X andVector:LEFT];
-    [_myParallelepipedPresentor setNeedsDisplay];
+- (IBAction)movePyramid:(UIButton *)sender{
+    enum directionOfMovement value;
+    switch ([sender tag]){
+        case left:
+            value = left;
+            break;
+        case right:
+            value = right;
+            break;
+        case down:
+            value = down;
+            break;
+        case up:
+            value = up;
+            break;
+        case nearer:
+            value = nearer;
+            break;
+        case further:
+            value = further;
+            break;
+        default:
+            NSLog(@"Error with button tag\n");
+            break;
     }
+     [_myPyramidView.pyramid movementWithVector:value];
+     [_myPyramidView setNeedsDisplay];
 }
--(IBAction)rotateParallelepipedLeftAroundY:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:Y andVector:LEFT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-     }
+- (IBAction)rotatePyramid:(UIButton *)sender{
+    enum directionOfRotation value;
+    switch ([sender tag]) {
+        case eLeftY:{
+            value = leftY;
+            break;
+        }
+        case eLeftX:{
+            value = leftX;
+            break;
+        }
+        case eLeftZ:{
+            value = leftZ;
+            break;
+        }
+        case eRightY:{
+            value = rightY;
+            break;
+        }
+        case eRightX:{
+            value = rightX;
+            break;
+        }
+        case eRightZ:{
+            value = rightZ;
+            break;
+        }
+        default:
+            NSLog(@"НЕ УДАЛОСЬ РАСПОЗНАТЬ ТЭГ ПРИ ПОВОРОТЕ\n");
+            break;
+    }
+    [_myPyramidView.pyramid rotateWithVector:value];
+    [_myPyramidView setNeedsDisplay];
 }
--(IBAction)rotateParallelepipedLeftAroundZ:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:Z andVector:LEFT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotateParallelepipedRightAroundX:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:X andVector:RIGHT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotateParallelepipedRightAroundY:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:Y andVector:RIGHT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-     }
-}
--(IBAction)rotateParallelepipedRightAroundZ:(id)sender{
-     for(int i = 0;i<10;++i){
-    [_myParallelepipedPresentor.parall rotateWithAxis:Z andVector:RIGHT];
-    [_myParallelepipedPresentor setNeedsDisplay];
-     }
-}
+- (IBAction)changeSizePyramid:(UIButton *)sender{}
 
--(IBAction)makeParallelepipedLarger:(id)sender{
-    [_myParallelepipedPresentor.parall scaleWithCondition:PLUS_SIZE];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
--(IBAction)makeParallelepipedSmaller:(id)sender{
-    [_myParallelepipedPresentor.parall scaleWithCondition:MINUS_SIZE];
-    [_myParallelepipedPresentor setNeedsDisplay];
-}
-
+- (IBAction)moveParallelepiped:(UIButton *)sender{}
+- (IBAction)rotateParallelepiped:(UIButton *)sender{}
+- (IBAction)changeSizeParallelepiped:(UIButton *)sender{}
 @end

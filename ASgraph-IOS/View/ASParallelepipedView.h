@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class ASParallelepiped;
-@interface ASParallelepipedPresentor : UIView
+@interface ASParallelepipedView : UIView
 @property (strong,nonatomic) ASParallelepiped *parall;
 @property (nonatomic , assign) BOOL wasBuilt;
 @end
